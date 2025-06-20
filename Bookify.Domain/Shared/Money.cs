@@ -1,4 +1,6 @@
-﻿namespace Bookify.Domain.Apartments;
+﻿using Bookify.Domain.Apartments;
+
+namespace Bookify.Domain.Shared;
 
 public record Money(decimal Amount, Currency Currency)
 {
@@ -8,7 +10,7 @@ public record Money(decimal Amount, Currency Currency)
         {
             throw new InvalidOperationException("Currencies have to be equal");
         }
-        
+
         return first with { Amount = first.Amount + second.Amount };
     }
 
@@ -16,4 +18,11 @@ public record Money(decimal Amount, Currency Currency)
     {
         return new Money(0, Currency.None);
     }
+
+    public static Money Zero(Currency currency)
+    {
+        return new Money(0, currency);
+    }
+
+    public bool IsZero() => this == Zero(Currency);
 };
