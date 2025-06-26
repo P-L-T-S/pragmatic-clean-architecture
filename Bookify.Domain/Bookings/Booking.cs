@@ -80,8 +80,8 @@ public sealed class Booking : Entity
             null
         );
 
-        var domainEvent = new BookingReservedDomainEvent(booking.Id);
-        booking.RaiseDomainEvent(domainEvent);
+        var reserveEvent = new BookingReservedDomainEvent(booking.Id);
+        booking.RaiseDomainEvent(reserveEvent);
 
         apartment.LastTimeBookedOnUtc = utcNow;
 
